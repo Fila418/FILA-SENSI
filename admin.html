@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - FILA SENSI</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Login Container -->
+    <div class="admin-container" id="login-container">
+        <div class="admin-box">
+            <h2 class="neon-text" style="font-family: 'Orbitron', sans-serif; margin-bottom: 20px;">ADMIN LOGIN</h2>
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <input type="text" id="admin-user" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="admin-pass" placeholder="Password" required>
+                </div>
+                <p id="login-error" style="color:red; display:none; font-size: 0.9rem; margin-bottom:10px;">Invalid Credentials</p>
+                <button type="submit" class="btn-primary" style="width: 100%;">LOGIN</button>
+            </form>
+            <a href="index.html" style="display:block; margin-top: 20px; color: var(--electric-blue); text-decoration: none;">&larr; Back to Site</a>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Container -->
+    <div class="dashboard-container" id="dashboard-container" style="display:none;">
+        <div class="dashboard-header">
+            <h2 class="neon-text" style="font-family: 'Orbitron', sans-serif;">ADMIN DASHBOARD</h2>
+            <div>
+                <button class="btn-primary" id="btn-logout" style="padding: 8px 20px; font-size: 0.9rem;">LOGOUT</button>
+                <a href="index.html" class="btn-primary" style="padding: 8px 20px; font-size: 0.9rem; margin-left: 10px;">VIEW SITE</a>
+            </div>
+        </div>
+
+        <div class="category-tabs" style="justify-content: flex-start; margin-bottom: 30px;">
+            <button class="tab-btn active" id="tab-products">Manage Products</button>
+            <button class="tab-btn" id="tab-reviews">Manage Reviews</button>
+        </div>
+
+        <!-- Products Section -->
+        <div id="products-section">
+            <div class="admin-grid">
+                <!-- Add Product Form -->
+                <div class="admin-card glassmorphism">
+                    <h3>Add / Edit Product</h3>
+                    <form id="product-form">
+                        <input type="hidden" id="prod-id">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="prod-cat" required>
+                                <option value="pc">PC</option>
+                                <option value="mobile">Mobile</option>
+                                <option value="courses">Courses</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="prod-title" placeholder="Product Title" required>
+                        </div>
+                        <div class="form-group" style="display:flex; gap:10px;">
+                            <input type="number" id="prod-lkr" placeholder="Price (LKR)" required>
+                            <input type="number" id="prod-usd" placeholder="Price (USD)" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Features (comma separated)</label>
+                            <textarea id="prod-feat" placeholder="Feature 1, Feature 2, Feature 3" required rows="3" style="width:100%; padding:10px; background:rgba(0,0,0,0.5); border:1px solid var(--glass-border); color:white; border-radius:5px;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label style="display:flex; align-items:center; gap:10px;">
+                                <input type="checkbox" id="prod-premium" style="width:auto; transform:scale(1.2);"> Premium Layout?
+                            </label>
+                        </div>
+                        <button type="submit" class="btn-primary" id="btn-save-prod">SAVE PRODUCT</button>
+                        <button type="button" class="btn-primary" id="btn-cancel-edit" style="display:none; background: #333; border-color: #555;">CANCEL</button>
+                    </form>
+                </div>
+
+                <!-- Product List -->
+                <div class="admin-card glassmorphism" style="overflow-x:auto;">
+                    <h3>Product List</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>LKR / USD</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="product-list-body">
+                            <!-- Populated JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+        <div id="reviews-section" style="display:none;">
+            <div class="admin-card glassmorphism" style="overflow-x:auto;">
+                <h3>Pending & Approved Reviews</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Rating</th>
+                            <th>Comment</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="review-list-body">
+                        <!-- Populated JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="admin.js"></script>
+</body>
+</html>
